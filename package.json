@@ -1,0 +1,28 @@
+{
+  "name": "shurl",
+  "version": "0.0.1",
+  "description": "URL shortener microservice (Free Code Camp Project)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabuladze/shurl.git"
+  },
+  "keywords": [
+    "url",
+    "shortener",
+    "shurl"
+  ],
+  "author": "Giorgi Abuladze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabuladze/shurl/issues"
+  },
+  "homepage": "https://github.com/gabuladze/shurl#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
