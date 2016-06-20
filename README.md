@@ -18,3 +18,5 @@ https://toobig.herokuapp.com/new/http://foo.com:80
 ```
 { "original_url":"http://www.google.com", "short_url":"https://toobig.herokuapp.com/2871" }
 ```
+
+Visit the short_url and you'll be redirected to the website you've added. For example, this ```https://little-url.herokuapp.com/2871``` will redirect to ```https://www.google.com/```
