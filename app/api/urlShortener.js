@@ -1,10 +1,11 @@
 'use strict'
 
 module.exports = function(app, db) {
-  app.get("/new/:url*", addUrl);
+  app.route("/new/:url*")
+    .get(addUrl);
 
-  app.route("/:url")
-    .get(getUrl);
+  app.route("/:urlId")
+    .get(redirect);
 
   function addUrl(req, res) {
     var url = req.url.slice(5);
@@ -16,19 +17,40 @@ module.exports = function(app, db) {
         "short_url" : createShortUrl(url)
       };
       res.send(urlObj);
-      saveUrl(urlObj);
+      saveUrl(urlObj, db);
     }
   }
 
-  function getUrl(req, res) {
-    // TODO
+  function redirect(req, res) {
+    var urlId = req.params.urlId;
+    if (urlId !== 'favicon.ico') {
+      getUrl(urlId, db, res);
+    }
   }
 
-  function saveUrl(urlObj) {
+  function getUrl(urlId, db, res) {
+    var short_url = process.env.APP_URL + urlId;
     var collection = db.collection("sites");
-    collection.save(urlObj, function(err, res) {
+    collection.findOne({
+      "short_url": short_url
+    }, function(err, result) {
+      if (result) {
+        if (err) throw err;
+        console.log("Found " + result);
+        console.log("Redirecting to " + result.original_url);
+        res.redirect(result.original_url);
+      } else {
+        console.log("URL Not Found!");
+        res.sendStatus(404);
+      }
+    });
+  }
+
+  function saveUrl(urlObj, db) {
+    var collection = db.collection("sites");
+    collection.save(urlObj, function(err, result) {
       if (err) throw err;
-      console.log("SAVED " + res);
+      console.log("SAVED " + result);
     })
   }
 
