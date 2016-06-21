@@ -19,5 +19,5 @@ module.exports = function(app, db) {
       res.send({
         err: "Add a proper url!"
       })
-    })
+    });
 }

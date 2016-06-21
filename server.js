@@ -1,4 +1,4 @@
-'user strict'
+'use strict'
 
 var express = require('express');
 var path = require('path');
@@ -6,13 +6,13 @@ var mongo = require('mongodb').MongoClient;
 var routes = require('./app/routes/index.js');
 var api = require('./app/api/urlShortener.js');
 var app = express();
-var dbUrl = 'mongodb://faskunji:faskunji@ds025772.mlab.com:25772/shurl';
+var dbUrl = process.env.MONGOLAB_URI || "mongodb://localhost:27017/shurl";
 
 mongo.connect(dbUrl, function(err, db) {
   if (err) {
     throw err;
   } else {
-    console.log("Successfully connected to Mongodb on port 27017");
+    console.log("Successfully connected to Mongodb");
   }
 
   db.createCollection("sites", {
