@@ -20,3 +20,7 @@ https://toobig.herokuapp.com/new/http://foo.com:80
 ```
 
 Visit the short_url and you'll be redirected to the website you've added. For example, this ```https://little-url.herokuapp.com/2871``` will redirect to ```https://www.google.com/```
+
+### Environment variables used:
+1. ```APP_URL``` - Your Application URL.
+2. ```MONGOLAB_URI``` - Your MongoLab DB URI
