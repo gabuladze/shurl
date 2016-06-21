@@ -5,7 +5,7 @@ var path = require('path');
 module.exports = function(app, db) {
   app.route("/")
     .get(function(req, res) {
-      var index = path.join(__dirname, "../public/index.html");
+      var index = path.join(express.static(process.env.PWD + "../public/index.html"));
       res.sendFile(index, function(err) {
         if (err) {
           console.log(err);

@@ -1,5 +1,5 @@
 'use strict'
-
+process.env.PWD = process.cwd()
 var express = require('express');
 var path = require('path');
 var mongo = require('mongodb').MongoClient;
