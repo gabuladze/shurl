@@ -12,12 +12,23 @@ module.exports = function(app, db) {
     if (!validateUrl(url)) {
       res.send({error: "Invalid URL!"})
     } else {
-      var urlObj = {
-        "original_url" : url,
-        "short_url" : createShortUrl(url)
-      };
-      res.send(urlObj);
-      saveUrl(urlObj, db);
+      //Check if document exists in db
+      var collection = db.collection("sites");
+      collection.findOne(
+        { "original_url": url },
+        { _id: 0 },
+        function(err, result) {
+          if (result) {
+            res.send(result);
+          } else {
+            var urlObj = {
+              "original_url" : url,
+              "short_url" : createShortUrl(url)
+            };
+            res.send(urlObj);
+            saveUrl(urlObj, db);
+          }
+        });
     }
   }
 
