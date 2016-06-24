@@ -1,11 +1,11 @@
 'use strict'
-
+process.env.PWD = process.cwd();
 var path = require('path');
-
+//FIX STATIC FILE SERVING
 module.exports = function(app, db) {
   app.route("/")
     .get(function(req, res) {
-      var index = path.join(process.env.PWD, "../public/index.html");
+      var index = path.join(process.env.PWD + "/public/index.html");
       res.sendFile(index, function(err) {
         if (err) {
           console.log(err);
