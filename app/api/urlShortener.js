@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = function(app, db) {
   app.route("/new/:url*")
@@ -10,7 +10,7 @@ module.exports = function(app, db) {
   function addUrl(req, res) {
     var url = req.url.slice(5);
     if (!validateUrl(url)) {
-      res.send({error: "Invalid URL!"})
+      res.json({error: "Invalid URL!"})
     } else {
       //Check if document exists in db
       var collection = db.collection("sites");

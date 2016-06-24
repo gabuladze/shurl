@@ -1,7 +1,8 @@
-'use strict'
+'use strict';
+
 process.env.PWD = process.cwd();
 var path = require('path');
-//FIX STATIC FILE SERVING
+
 module.exports = function(app, db) {
   app.route("/")
     .get(function(req, res) {
@@ -18,7 +19,7 @@ module.exports = function(app, db) {
 
   app.route("/new")
     .get(function(req, res) {
-      res.send({
+      res.json({
         err: "Add a proper url!"
       })
     });
